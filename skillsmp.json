@@ -1,0 +1,49 @@
+{
+  "$schema": "https://skillsmp.com/schemas/bundle_v2.json",
+  "skillsmp_engine_version": "2.0",
+  "bundle_name": "academic-ai-auditor-suite",
+  "display_name": "Academic Manuscript AI Auditing & Humanization Suite",
+  "version": "1.0.0",
+  "description": "Enterprise-grade pipeline for academic manuscript AI auditing, Ghostscript /ebook stream compression (<2.10MB platform limit), multi-worker Chrome GUI verification (headless=False), anti-false-zero visible-digit assertions, and cascading 3-stage humanization.",
+  "author": "auto-edgecompute",
+  "license": "MIT",
+  "homepage": "https://skillsmp.com/skills/academic-ai-auditor-suite",
+  "runtime_requirements": {
+    "python": ">=3.10",
+    "binaries": [
+      "google-chrome",
+      "gs"
+    ],
+    "dependencies": [
+      "playwright>=1.40.0",
+      "pypdf>=4.0.0",
+      "pydantic>=2.0.0"
+    ]
+  },
+  "skills": [
+    {
+      "name": "manuscript-pdf-slicer",
+      "version": "1.0.0",
+      "description": "Partition academic PDF/Word documents into upload-safe chunks with Ghostscript /ebook PDF 1.4 recompression.",
+      "path": "./manuscript-pdf-slicer",
+      "entry_point": "scripts/cli.py",
+      "manifest_output": "chunk_manifest.json"
+    },
+    {
+      "name": "ai-detector-auditor",
+      "version": "1.0.0",
+      "description": "Multi-worker tiled Chrome GUI auditor (headless=False ALWAYS) with strict visible-digit gating and screenshot proofs.",
+      "path": "./ai-detector-auditor",
+      "entry_point": "scripts/cli.py",
+      "manifest_output": "audit_summary.json"
+    },
+    {
+      "name": "stubborn-humanizer",
+      "version": "1.0.0",
+      "description": "Cascading 3-tier humanizer (Stage 0 typography heuristics, Stage 1 2-strike gate, Stage 2 micro-slicing <180 words & JSON HITL).",
+      "path": "./stubborn-humanizer",
+      "entry_point": "scripts/cli.py",
+      "manifest_output": "humanizer_manifest.json"
+    }
+  ]
+}

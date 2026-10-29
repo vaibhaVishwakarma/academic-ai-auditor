@@ -1,0 +1,18 @@
+{
+  "platform": "grammarly_ai_detector",
+  "url": "https://www.grammarly.com/ai-detector",
+  "selectors": {
+    "upload_button": "button:has-text(\"Upload file\")",
+    "file_input_fallback": "input[type=\"file\"][name=\"source_file\"], input[type=\"file\"]",
+    "scan_button": "button:has-text(\"Scan for AI\")",
+    "meter_score_container": "div[data-testid=\"score-meter\"]",
+    "meter_digits_regex": "^\\d{1,3}%$",
+    "api_endpoint_match": "aidetector"
+  },
+  "delays": {
+    "react_hydration_seconds": 3.5,
+    "worker_stagger_seconds": 3.5,
+    "poll_interval_seconds": 0.8,
+    "max_retry_attempts": 15
+  }
+}

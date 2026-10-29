@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChunkManifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "source_document",
+    "file_stem",
+    "version",
+    "total_pages",
+    "total_words",
+    "compression_engine",
+    "chunks"
+  ],
+  "properties": {
+    "manifest_version": { "type": "string", "enum": ["1.0.0"] },
+    "source_document": { "type": "string" },
+    "file_stem": { "type": "string" },
+    "version": { "type": "string" },
+    "total_pages": { "type": "integer", "minimum": 1 },
+    "total_words": { "type": "integer", "minimum": 0 },
+    "compression_engine": { "type": "string" },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "page_start",
+          "page_end",
+          "word_count",
+          "byte_size",
+          "relative_path",
+          "file_path",
+          "sha256"
+        ],
+        "properties": {
+          "chunk_id": { "type": "string", "pattern": "^chk_\\d{3}$" },
+          "page_start": { "type": "integer", "minimum": 1 },
+          "page_end": { "type": "integer", "minimum": 1 },
+          "word_count": { "type": "integer", "minimum": 0 },
+          "byte_size": { "type": "integer", "maximum": 2097152 },
+          "relative_path": { "type": "string" },
+          "file_path": { "type": "string" },
+          "sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScanSessionManifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "file_stem",
+    "version",
+    "concurrency_workers",
+    "total_chunks_processed",
+    "results"
+  ],
+  "properties": {
+    "manifest_version": { "type": "string", "enum": ["1.0.0"] },
+    "file_stem": { "type": "string" },
+    "version": { "type": "string" },
+    "concurrency_workers": { "type": "integer", "minimum": 1 },
+    "total_chunks_processed": { "type": "integer", "minimum": 1 },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "start_page",
+          "end_page",
+          "word_count",
+          "score_percent",
+          "screenshot_path"
+        ],
+        "properties": {
+          "chunk_id": { "type": "string" },
+          "start_page": { "type": "integer" },
+          "end_page": { "type": "integer" },
+          "word_count": { "type": "integer" },
+          "score_percent": { "type": ["integer", "null"] },
+          "screenshot_path": { "type": ["string", "null"] },
+          "attempts_needed": { "type": "integer" },
+          "latency_seconds": { "type": "number" },
+          "error": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HumanizerManifest",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "file_stem",
+    "version",
+    "threshold",
+    "total_chunks_remediated",
+    "remediations"
+  ],
+  "properties": {
+    "manifest_version": { "type": "string", "enum": ["1.0.0"] },
+    "file_stem": { "type": "string" },
+    "version": { "type": "string" },
+    "threshold": { "type": "integer" },
+    "total_chunks_remediated": { "type": "integer" },
+    "remediations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "chunk_id",
+          "page_number",
+          "baseline_ai_score",
+          "target_threshold",
+          "candidates",
+          "status"
+        ],
+        "properties": {
+          "chunk_id": { "type": "string" },
+          "page_number": { "type": "integer" },
+          "baseline_ai_score": { "type": "integer" },
+          "target_threshold": { "type": "integer" },
+          "status": { "type": "string" },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["candidate_id", "stage", "text", "status"],
+              "properties": {
+                "candidate_id": { "type": "string" },
+                "stage": { "type": "integer" },
+                "strike_number": { "type": "integer" },
+                "text": { "type": "string" },
+                "word_count": { "type": "integer" },
+                "verified_score": { "type": ["integer", "null"] },
+                "status": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
